@@ -3,7 +3,7 @@
         <header>
             <nav class="navbar navbar-expand-lg bg-body-tertiary" v-if="showHeader">
                 <div class="container-fluid">
-                    <router-link  class="navbar-brand" to="/loginForm">StudyUp!</router-link>
+                    <router-link class="navbar-brand" to="/loginForm">StudyUp!</router-link>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -15,13 +15,19 @@
                                 <router-link class="nav-link active" to="/">Страница 1</router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link  class="nav-link active" to="/loginForm">Страница 2</router-link>
+                                <router-link class="nav-link active" to="/loginForm">Страница 2</router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link  class="nav-link active" to="/loginForm">Страница 3</router-link>
+                                <router-link class="nav-link active" to="/loginForm">Страница 3</router-link>
                             </li>
                         </ul>
-                        <router-link  class="nav-link active" to="/loginForm">Войти</router-link>
+                        <router-link v-if="mainStore.userData.length == 0" class="nav-link active"
+                            to="/loginForm">Войти</router-link>
+                        <div v-else class="d-flex">
+                            <p class="m-2">{{ mainStore.userData.name }}</p>
+                            <a class="m-2 nav-link active logout" @click="logout">Выйти</a>
+                        </div>
+
                     </div>
                 </div>
             </nav>
@@ -30,15 +36,38 @@
     </div>
 </template>
 <script>
+import { useMainStore } from '../stores/main'
+
 export default {
+    setup() {
+        const mainStore = useMainStore()
+        return {
+            mainStore,
+        }
+    },
     data() {
         return {
             showHeader: true
         }
     },
+    methods:{
+        async logout(){
+            await fetch("api/logout",{
+                method:"GET",
+                headers:{
+                    accept:"application/json"
+                }
+            }).then(response => {
+                if(response.ok){
+                    this.mainStore.logout()
+                    return response.json()
+                }
+            }).then(data => alert(data.message))
+        }
+    },
     watch: {
         '$route'(to) {
-            if (to.fullPath === '/loginForm' ||to.fullPath === '/registerForm'  ) {
+            if (to.fullPath === '/loginForm' || to.fullPath === '/registerForm') {
                 this.showHeader = false;
             } else {
                 this.showHeader = true;
@@ -47,4 +76,8 @@ export default {
     }
 }
 </script>
-<style></style>
+<style>
+.logout{
+    cursor: pointer;
+}
+</style>
