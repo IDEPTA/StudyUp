@@ -6,11 +6,17 @@ export const useMainStore = defineStore("mainStore", {
     }),
     getters: {},
     actions: {
-        login($data){
-            this.userData = $data
+        login(data, remember) {
+            this.userData = data;
+            if (remember === "active") {
+                localStorage.setItem("userData", JSON.stringify(data));
+            } else {
+                sessionStorage.setItem("userData", JSON.stringify(data));
+            }
         },
-        logout(){
-            this.userData = []
-        }
+        logout() {
+            this.userData = [];
+            localStorage.removeItem("userData");
+        },
     },
 });

@@ -20,27 +20,23 @@ class AuthController extends Controller
     }
     public function login(loginValidateRequest $req)
     {
-        if($req->validated()){
+        if ($req->validated()) {
             $data = $req->validated();
-            $this->authService->login($data);
-            $user = Auth::user();
-            return response()->json(['message' => 'Все заебись', "data" => $data, "user"=>$user], 200);
+            $result = $this->authService->login($data);
+            return $result;
         }
     }
     public function register(registerValidationRequest $req)
     {
-        if($req->validated()){
+        if ($req->validated()) {
             $data = $req->validated();
             $this->authService->register($data);
-            return response()->json(['message' => 'Все заебись', "data" => $data], 200);
+            return response()->json(['message' => 'Регистрация прошла успешно', "data" => $data], 200);
         }
     }
-    public function logout(){
+    public function logout()
+    {
         $this->authService->logout();
         return response()->json(['message' => 'Вы разлогинились'], 200);
-    }
-    public function test()
-    {
-        return response()->json(['message' => 'Все не заебись'], 401);
     }
 }
