@@ -45,12 +45,14 @@
                             </li>
                             <li
                                 class="nav-item"
-                                v-if="mainStore.userData.role_id == 1"
+                                v-if="mainStore.userData.role_id == 2"
                             >
-                                <router-link class="nav-link active" to="/"
-                                    >Пользователи</router-link
+                                <router-link class="nav-link active" to="/variantsList"
+                                    >Предметы егэ</router-link
                                 >
                             </li>
+                            
+                            
                         </ul>
                         <router-link
                             v-if="mainStore.userData.length == 0"

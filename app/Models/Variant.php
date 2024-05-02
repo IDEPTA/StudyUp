@@ -12,5 +12,9 @@ class Variant extends Model
         "file",
         "answers",
         "subject",
+        "created_at"
     ];
+    public function solved(){
+        return $this->belongsTo(Solved::class);
+    }
 }

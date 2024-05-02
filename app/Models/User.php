@@ -50,4 +50,7 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+    public function solved(){
+        return $this->belongsTo(Solved::class);
+    }
 }

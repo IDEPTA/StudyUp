@@ -13,26 +13,32 @@
             <div v-if="selectedSubject === 'Русский язык'">
                 <input
                     type="text"
-                    v-for="n in 5"
+                    v-for="n in 26"
                     v-model="answersData[n - 1]"
                     required
                     :key="n"
+                    :placeholder="n"
                 />
             </div>
             <div v-if="selectedSubject === 'Математика профиль'">
                 <input
                     type="text"
-                    v-for="n in 21"
-                    v-model="answersData[n]"
+                    v-for="n in 12"
+                    v-model="answersData[n - 1]"
                     required
+                    :key="n"
+                    :placeholder="n"
+                   
                 />
             </div>
             <div v-if="selectedSubject === 'Математика база'">
                 <input
                     type="text"
-                    v-for="n in 12"
-                    v-model="answersData[n]"
+                    v-for="n in 21"
+                    v-model="answersData[n - 1]"
                     required
+                    :key="n"
+                    :placeholder="n"
                 />
             </div>
             <input
@@ -43,6 +49,8 @@
                 required
                 @change="addFile"
             />
+            <p >{{ message }}</p>
+            <p v-if="errors.file">{{ errors.file[0] }}</p>
             <input type="submit" value="Добавить" />
         </form>
     </div>
@@ -54,6 +62,8 @@ export default {
             selectedSubject: "",
             file: "",
             answersData: [],
+            errors: [],
+            message: "",
         };
     },
     methods: {
@@ -73,7 +83,13 @@ export default {
                 body: formData,
             })
                 .then((response) => response.json())
-                .then((data) => console.log(data));
+                .then((data) => {
+                    if (data.errors) {
+                        this.errors = data.errors;
+                    }else {
+                        this.message = data.message;
+                    }
+                });
         },
     },
 };

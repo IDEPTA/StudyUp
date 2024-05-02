@@ -3,6 +3,8 @@ import { defineStore } from "pinia";
 export const useMainStore = defineStore("mainStore", {
     state: () => ({
         userData: [],
+        variantsData: "",
+        result:""
     }),
     getters: {},
     actions: {
@@ -18,5 +20,11 @@ export const useMainStore = defineStore("mainStore", {
             this.userData = [];
             localStorage.removeItem("userData");
         },
+        addVariants(data) {
+            this.variantsData = data;
+        },
+        addUserAnswers(data){
+            this.result = data
+        }
     },
 });

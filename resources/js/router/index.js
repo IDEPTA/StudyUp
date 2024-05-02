@@ -2,7 +2,10 @@ import { createMemoryHistory, createRouter } from "vue-router";
 import loginForm from "../components/loginForm.vue";
 import registerForm from "../components/registerForm.vue";
 import variantAddForm from "../components/variantAddForm.vue";
-
+import variantsList from "../components/variantsList.vue";
+import variantBlock from "../components/variantBlock.vue";
+import variantFull from "../components/variantFull.vue";
+import resultScreen from "../components/resultScreen.vue";
 const routes = [
     {
         path: "/loginForm",
@@ -16,6 +19,25 @@ const routes = [
         path: "/variantAddForm",
         component: variantAddForm,
     },
+    {
+        path: "/variantsList",
+        component: variantsList,
+    },
+    {
+        path: "/variantBlock",
+        component: variantBlock,
+    },
+    {
+        path: "/variantFull/:id",
+        component: variantFull,
+        name:"variantFull",
+        props:true,
+    },
+    {
+        path:"/resultScreen",
+        name:"resultScreen",
+        component: resultScreen,
+    }
 ];
 
 const router = createRouter({

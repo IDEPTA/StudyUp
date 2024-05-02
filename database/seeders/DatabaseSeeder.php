@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,7 +15,15 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-
+        Role::factory()->create([
+            "role_name" => "admin",
+        ]);
+        Role::factory()->create([
+            "role_name" => "student",
+        ]);
+        Role::factory()->create([
+            "role_name" => "school",
+        ]);
         User::factory()->create([
             'name' => 'Сергей',
             'lastname' => "Прокопчук",
