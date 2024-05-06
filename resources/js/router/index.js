@@ -6,7 +6,12 @@ import variantsList from "../components/variantsList.vue";
 import variantBlock from "../components/variantBlock.vue";
 import variantFull from "../components/variantFull.vue";
 import resultScreen from "../components/resultScreen.vue";
+import mainScreen from "../components/mainScreen.vue";
 const routes = [
+    {
+        path: "/",
+        component: mainScreen,
+    },
     {
         path: "/loginForm",
         component: loginForm,

@@ -1,14 +1,16 @@
 <template>
-    <router-link :to="{
-        name:'variantFull',
-        params:{id:index}
-    }">
-        <h3>{{ variant.subject }} №{{ variant.id }} </h3>
-        <p>От {{ variant.created_at }}</p>
-    </router-link>
+    <div class="variantBlock">
+        <router-link :to="{
+            name: 'variantFull',
+            params: { id: index }
+        }" class="variantBlock">
+            <h3>{{ variant.subject }} №{{ variant.id }} </h3>
+            <p>От {{ variant.created_at }}</p>
+        </router-link>
+    </div>
 </template>
 <script>
-export default{
+export default {
     props: {
         variant: {
             type: Object,
@@ -21,4 +23,13 @@ export default{
     }
 }
 </script>
-<style></style>
+<style scoped>
+.variantBlock {
+    text-decoration: none;
+    padding: 0px 15px;
+    margin: 5px;
+    background-color: white;
+    color: rgb(0, 0, 0);
+    width: 250px;
+}
+</style>

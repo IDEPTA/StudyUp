@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="variantList">
         <VariantBlock v-for="(el, index) in variants" :key="index" :variant="el" :index="index"/>
     </div>
 </template>
@@ -45,7 +45,11 @@ export default {
 }
 </script>
 <style>
-p {
-    color: aliceblue;
+.variantList{
+    padding: 20px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 70%;
+    margin: auto;
 }
 </style>

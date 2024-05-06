@@ -1,46 +1,24 @@
 <template>
     <div>
-        <form
-            @submit.prevent="login(email, password, remember_token)"
-            method="post"
-        >
+        <form @submit.prevent="login(email, password, remember_token)" method="post">
             <p>Логин</p>
-            <input
-                class="input"
-                v-model="email"
-                type="text"
-                name="email"
-                placeholder="Логин"
-            />
+            <input class="input" v-model="email" type="text" name="email" placeholder="Логин" />
             <p v-if="errors.email">{{ errors.email[0] }}</p>
             <p>Пароль</p>
-            <input
-                class="input"
-                type="password"
-                name="password"
-                v-model="password"
-                placeholder="Пароль"
-            />
+            <input class="input" type="password" name="password" v-model="password" placeholder="Пароль" />
             <p v-if="errors.password">{{ errors.password[0] }}</p>
             <p>
-                <input
-                    class="form-check-input"
-                    type="checkbox"
-                    id="flexCheckDefault"
-                    name="remember_token"
-                    v-model="remember_token"
-                />
+                <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="remember_token" v-model="remember_token" />
                 Запомнить меня
             </p>
             <p v-if="message">{{ message }}</p>
             <input class="submit" type="submit" value="Авторизоваться" />
-            <router-link to="/registerForm" class="back"
-                >Зарегистрироваться</router-link
-            >
+            <router-link to="/registerForm" class="back">Зарегистрироваться</router-link>
             <router-link to="/" class="back">Назад</router-link>
         </form>
     </div>
 </template>
+
 <script>
 import { useMainStore } from "../stores/main";
 export default {
@@ -85,10 +63,9 @@ export default {
                         this.errors = data.errors;
                     } else if (data.user) {
                         this.message = data.message;
-                        this.mainStore.login(
-                            data.user,
-                            data.data.remember_token
-                        );
+                        this.mainStore.login(data.user, data.data.remember_token);
+                        // Перенаправляем на главный экран после успешной авторизации
+                        this.$router.push({ path: '/' });
                     } else {
                         this.message = data.message;
                     }
@@ -97,6 +74,7 @@ export default {
     },
 };
 </script>
+
 <style scoped>
 form {
     display: flex;
