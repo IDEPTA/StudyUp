@@ -136,8 +136,8 @@ form {
     flex-direction: column;
     margin: 10px auto;
     padding: 30px;
-    width: 500px;
-    background-color: rgb(237, 119, 72);
+    width: 40%;
+    border: 2px solid #aac6fc;
     border-radius: 5px;
 }
 
@@ -151,19 +151,19 @@ form p {
     padding: 10px;
     font-size: 18px;
     border: none;
+    border-bottom: 2px solid #aac6fc;
     outline: none;
-    border-radius: 5px;
 }
 
 .submit {
-    background-color: #28a745;
-    border: none;
-    margin: 10px 0px;
-    border-radius: 5px;
-    color: aliceblue;
-    font-size: 15px;
+    margin: 10px;
+    text-decoration: none;
+    border: 2px solid #c76991;
     padding: 5px;
-    cursor: pointer;
+    text-align: center;
+    border-radius: 5px;
+    color: #c76991;
+    background-color: white;
 }
 
 .back {

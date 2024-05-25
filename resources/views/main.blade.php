@@ -16,6 +16,8 @@
         <div id="app"></div>
     </main>
     @vite('resources/js/app.js')
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/bootstrap@5"></script>
 </body>
 
 </html>

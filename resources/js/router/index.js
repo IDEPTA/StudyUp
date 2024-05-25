@@ -6,8 +6,19 @@ import variantsList from "../components/variantsList.vue";
 import variantBlock from "../components/variantBlock.vue";
 import variantFull from "../components/variantFull.vue";
 import resultScreen from "../components/resultScreen.vue";
+import profileScreen from "../components/profileScreen.vue";
 import mainScreen from "../components/mainScreen.vue";
+import statisticScreen from "./../components/statisticScreen.vue";
+
 const routes = [
+    {
+        path: "/statistics",
+        component: statisticScreen,
+    },
+    {
+        path: "/profileScreen",
+        component: profileScreen,
+    },
     {
         path: "/",
         component: mainScreen,
@@ -35,14 +46,14 @@ const routes = [
     {
         path: "/variantFull/:id",
         component: variantFull,
-        name:"variantFull",
-        props:true,
+        name: "variantFull",
+        props: true,
     },
     {
-        path:"/resultScreen",
-        name:"resultScreen",
+        path: "/resultScreen",
+        name: "resultScreen",
         component: resultScreen,
-    }
+    },
 ];
 
 const router = createRouter({

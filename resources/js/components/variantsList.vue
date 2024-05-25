@@ -1,11 +1,17 @@
 <template>
     <div class="variantList">
-        <VariantBlock v-for="(el, index) in variants" :key="index" :variant="el" :index="index"/>
+        <VariantBlock
+            v-for="(el, index) in mainStore.variantsData"
+            :key="index"
+            :variant="el"
+            :index="index"
+            :role_id="mainStore.userData.role_id"
+        />
     </div>
 </template>
 <script>
-import { useMainStore } from '../stores/main';
-import VariantBlock from './variantBlock.vue';
+import { useMainStore } from "../stores/main";
+import VariantBlock from "./variantBlock.vue";
 
 export default {
     setup() {
@@ -16,36 +22,36 @@ export default {
     },
     data() {
         return {
-            variants: '',
-            message: ""
-        }
+            variants: "",
+            message: "",
+        };
     },
     async mounted() {
         await fetch("api/variants", {
             method: "GET",
             headers: {
                 Accept: "application/json",
-            }
-        }).then(response => response.json())
-            .then(data => {
-                data.data.map(el =>{
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                data.data.map((el) => {
                     el.answers = JSON.parse(el.answers);
-                    el.created_at = el.created_at.slice(0,10);
+                    el.created_at = el.created_at.slice(0, 10);
                     return el;
                 });
-                console.log(data);
-                this.mainStore.addVariants(data.data)
+                this.mainStore.addVariants(data.data);
                 this.variants = data.data;
                 this.message = data.msg;
             });
     },
-    components:{
-        VariantBlock
-    }
-}
+    components: {
+        VariantBlock,
+    },
+};
 </script>
-<style>
-.variantList{
+<style scoped>
+.variantList {
     padding: 20px 10px;
     display: flex;
     flex-wrap: wrap;

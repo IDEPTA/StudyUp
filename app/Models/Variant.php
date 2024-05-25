@@ -14,7 +14,9 @@ class Variant extends Model
         "subject",
         "created_at"
     ];
-    public function solved(){
-        return $this->belongsTo(Solved::class);
+
+    public function solved()
+    {
+        return $this->hasMany(Solved::class);
     }
 }

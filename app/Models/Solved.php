@@ -14,10 +14,12 @@ class Solved extends Model
         "result",
         "created_at",
     ];
-    public function user(){
-        $this->hasMany(User::class);
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
-    public function variant(){
-        $this->hasMany(Solved::class);
+    public function variant()
+    {
+        return $this->belongsTo(Variant::class);
     }
 }

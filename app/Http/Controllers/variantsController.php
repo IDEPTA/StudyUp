@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use App\Models\Variant;
-use Illuminate\Http\Request;
 use App\Http\Requests\addVariantValidation;
 
 class variantsController extends Controller
@@ -13,11 +11,11 @@ class variantsController extends Controller
      * Display a listing of the resource.
      */
 
-     public function index()
-     {
+    public function index()
+    {
         $variants = Variant::all();
-         return response()->json(['msg' => "Вывод", "data" => $variants]);
-     }
+        return response()->json(['msg' => "Вывод", "data" => $variants]);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -26,29 +24,17 @@ class variantsController extends Controller
     {
         $data = $request->validated();
         $file = $request->file("file");
-        $filePath = $file->store('storage/files');
+        $filePath = $file->store('files');
         $variant = new Variant();
         $variant->subject = $data['selectedSubject'];
         $variant->answers = $data['answersData'];
-        $variant->file = $filePath;
+        $variant->file = 'storage/' . $filePath;
         $variant->save();
-        return response()->json(['msg' => "Добавлено", "data" => $data, 'file' => $file]);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+        return response()->json([
+            'msg' => "Добавлено",
+            "data" => $data,
+            'file' => $file
+        ]);
     }
 
     /**
@@ -56,6 +42,7 @@ class variantsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Variant::find($id)->delete();
+        return response()->json(["msg" => "Вариант удален"]);
     }
 }
