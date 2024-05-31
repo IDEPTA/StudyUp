@@ -8,7 +8,7 @@
                     <br />
                     проверить качество своей подготовки к ЕГЭ
                 </p>
-                <div class="bannerButtonBlock">
+                <div class="bannerButtonBlock" v-if="!mainStore.userData.id">
                     <router-link class="bannerButton" to="/loginForm">
                         Авторизоваться
                     </router-link>
@@ -107,7 +107,7 @@
                         <path
                             d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"
                         /></svg
-                    >Ростовн-на-Дону, Россия
+                    >Ростов-на-Дону, Россия
                 </p>
             </div>
             <div>

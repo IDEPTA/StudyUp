@@ -46,12 +46,19 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
     public function role()
     {
         return $this->belongsTo(Role::class);
     }
+
     public function solved()
     {
         return $this->hasMany(Solved::class);
+    }
+
+    public function school_id()
+    {
+        return $this->hasMany(School::class);
     }
 }

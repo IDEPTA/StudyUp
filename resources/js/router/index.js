@@ -9,6 +9,7 @@ import resultScreen from "../components/resultScreen.vue";
 import profileScreen from "../components/profileScreen.vue";
 import mainScreen from "../components/mainScreen.vue";
 import statisticScreen from "./../components/statisticScreen.vue";
+import teacherScreen from "./../components/teacherScreen.vue";
 
 const routes = [
     {
@@ -18,6 +19,10 @@ const routes = [
     {
         path: "/profileScreen",
         component: profileScreen,
+    },
+    {
+        path: "/teacherScreen",
+        component: teacherScreen,
     },
     {
         path: "/",
