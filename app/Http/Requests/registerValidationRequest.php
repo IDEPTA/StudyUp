@@ -28,6 +28,8 @@ class registerValidationRequest extends FormRequest
             "email" => "required|min:5|unique:users,email",
             "phone" => "required|min:11|max:11",
             "password" => "required|min:7|confirmed",
+            "role_id" => "required",
+            "school" => "required",
         ];
     }
 }
